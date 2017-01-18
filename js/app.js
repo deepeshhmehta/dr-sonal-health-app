@@ -1121,6 +1121,45 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+                    .state('app.consultationnotes', {
+                        url: "/consultationnotes/{appId:string}",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-notes-list.html",
+                                controller: 'ConsultationsNotesListCtrl'
+                            }
+                        }
+                    })
+                    .state('app.consultation-note-details', {
+                        url: "/consultationnotedetails/{appId:string}",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note-details.html",
+                                controller: 'ConsultationsNotesDetailsCtrl'
+                            }
+                        }
+                    })
+                    .state('app.consultation-note-records', {
+                        url: "/consultation-note-records/{appId:string}",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note-records.html",
+                                controller: 'ConsultationNoteRecordsCtrl'
+                            }
+                        }
+                    })
+                    .state('app.records-view-box', {
+                        cache: false,
+                        url: "/records-view-box/{id:int}/{name:string}",
+                        views: {
+                            'menuContent': {
+                                templateUrl: function () {
+                                    return "views/app/records/records-view-box.html";
+                                },
+                                controller: 'RecordsViewBoxCtrl'
+                            }
+                        }
+                    })
                     ;
 
             // if none of the above states are matched, use this as the fallback

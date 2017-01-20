@@ -1197,7 +1197,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
             };
         })
 
-        .controller('SharedwithYouCtrl', function ($scope, $http, $state, $stateParams, $timeout, $ionicModal, $rootScope, $sce) {
+        .controller('SharedwithYouCtrl', function ($scope, $http, $state, $stateParams, $timeout, $ionicModal, $rootScope, $sce, $ionicLoading) {
             $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
             $scope.interface = window.localStorage.getItem('interface_id');
             $scope.patientId = get('id');
@@ -1219,6 +1219,18 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $scope.langtext = response.data.langtext;
                 $scope.language = response.data.lang.language;
 
+            }, function errorCallback(e) {
+                console.log(e);
+            });
+            $ionicLoading.show({template: 'Loading...'});
+            $http({
+                method: 'GET',
+                url: domain + 'doctors/get-shared-record-doctors',
+                params: {userId: $scope.userId, patientId: $scope.patientId, interface: $scope.interface}
+            }).then(function successCallback(response) {
+                console.log(response.data);
+                $scope.userRecords = response.data;
+                $ionicLoading.hide();
             }, function errorCallback(e) {
                 console.log(e);
             });

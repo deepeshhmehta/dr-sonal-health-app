@@ -1875,7 +1875,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
             $scope.limit = 3;
             $scope.recId = [];
             $scope.recIds = [];
-            $scope.userId = get('id');
+            $scope.userId = get('doctorid');
             $scope.patientId = get('id');
             $scope.repeatFreq = [];
             $scope.repeatNo = [];
